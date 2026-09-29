@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6ef">
+    <meta name="description" content="A focused to-do list with priorities and quick notes.">
+    <title>Daymark | Tasks & Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#main" aria-label="Daymark home"><span class="brand-mark" aria-hidden="true">d.</span><span>daymark</span></a>
+        <div class="topbar-date"><span class="live-dot" aria-hidden="true"></span><span id="today-label"></span></div>
+      </header>
+
+      <main id="main" class="workspace">
+        <section class="tasks-column" aria-labelledby="page-title">
+          <div class="page-intro">
+            <p class="eyebrow">YOUR SPACE, IN ORDER</p>
+            <h1 id="page-title">Make room<br>for <span>what matters.</span></h1>
+            <p class="intro-copy">A clear list. A quieter mind.</p>
+          </div>
+
+          <form id="task-form" class="task-form">
+            <label class="sr-only" for="task-title">Task name</label>
+            <input id="task-title" name="title" type="text" maxlength="140" placeholder="What needs doing?" autocomplete="off" required>
+            <label class="sr-only" for="task-priority">Priority</label>
+            <select id="task-priority" name="priority" aria-label="Task priority">
+              <option value="Low">Low</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="High">High</option>
+            </select>
+            <button class="add-task-button" type="submit"><span aria-hidden="true">+</span><span>Add task</span></button>
+          </form>
+          <p id="task-error" class="form-error" role="alert" hidden></p>
+
+          <div class="list-toolbar">
+            <div>
+              <h2>Tasks <span id="task-count" class="count-badge">0</span></h2>
+              <p class="list-subtitle">Small steps add up.</p>
+            </div>
+            <button id="clear-completed" class="text-button" type="button" hidden>Clear completed</button>
+          </div>
+
+          <nav class="filters" aria-label="Filter tasks">
+            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="active" aria-pressed="false">Active</button>
+            <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Completed</button>
+            <button class="filter-button" type="button" data-filter="high" aria-pressed="false"><span class="filter-star" aria-hidden="true">★</span> High priority</button>
+          </nav>
+
+          <ul id="task-list" class="task-list" aria-live="polite"></ul>
+          <div id="task-empty" class="empty-state">
+            <span class="empty-icon" aria-hidden="true">↗</span>
+            <p class="empty-title">A fresh page.</p>
+            <p>Your next small win can go here.</p>
+          </div>
+        </section>
+
+        <aside class="notes-panel" aria-labelledby="notes-heading">
+          <div class="notes-heading-row">
+            <div><p class="eyebrow">THE MARGIN</p><h2 id="notes-heading">Quick notes <span aria-hidden="true">✳</span></h2></div>
+            <span id="note-count" class="note-count">0 NOTES</span>
+          </div>
+          <form id="note-form" class="note-form">
+            <label class="sr-only" for="note-title">Note title (optional)</label>
+            <input id="note-title" type="text" maxlength="80" placeholder="A title, if you like">
+            <label class="sr-only" for="note-content">Write a note</label>
+            <textarea id="note-content" rows="4" maxlength="2000" placeholder="Catch a thought before it wanders..." required></textarea>
+            <div class="note-form-footer"><span id="note-error" class="form-error" role="alert" hidden></span><button class="note-save-button" type="submit">Save note <span aria-hidden="true">↗</span></button></div>
+          </form>
+          <div id="note-empty" class="notes-empty">Nothing pinned here yet.</div>
+          <ul id="note-list" class="note-list" aria-live="polite"></ul>
+        </aside>
+      </main>
+      <footer class="page-footer"><span>DAYMARK / PERSONAL ORGANIZER</span><span>ONE THING AT A TIME</span></footer>
+    </div>
+  </body>
+</html>
